@@ -1,6 +1,6 @@
 class PutitController < ApplicationController
   def show
-    render 'putit/show'
+    render 'putit/show', :layout => false
   end
   
   def upload
