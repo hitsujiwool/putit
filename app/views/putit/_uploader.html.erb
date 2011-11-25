@@ -1,0 +1,28 @@
+<iframe class="putit_upload" id="putit_uploader_<%= method %>" src="<%= putit_show_url %>" width="100%" height="30" frameborder="0"></iframe>
+<div class="thumbnail">
+  <%= f.hidden_field method %>
+  <%= image_tag val, options %>
+</div>
+<script>
+//画像投稿をajax化する
+$(function() {
+  $('#putit_uploader_<%= method %>').bind('load', function() {
+    var $this = $(this),
+        $thumbnail = $this.next('.thumbnail');
+    var $input = $($this.get(0).contentWindow.document).find(':input');
+    $input.bind('change', function() {
+      var $form = $(this).parent('form');
+      $form.get(0).prefix.value = $this.attr('id');
+      $form.ajaxSubmit({
+        dataType: 'json',
+        success: function(data, status, xhr) {
+          if (data.status === 'OK') {
+            $thumbnail.find(':input').val(data.body.filename);
+            $thumbnail.find('img').attr('src', data.body.tmp_filepath);
+          }
+        }
+      });
+    });
+  });
+});
+</script>

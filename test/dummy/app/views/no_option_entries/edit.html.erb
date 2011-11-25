@@ -1,0 +1,6 @@
+<%= form_for @entry do |f| %>
+  <%= f.upload_select :image, :size => '200x200' %>
+  <p>filename: <%= @entry.image %></p>
+  <p>url: <%= @entry.image_url %></p>
+  <%= f.submit '更新', :disable_with => 'Uploading...' %>
+<% end %>
