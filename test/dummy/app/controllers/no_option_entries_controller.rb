@@ -15,7 +15,7 @@ class NoOptionEntriesController < ApplicationController
     if @entry.save
       redirect_to no_option_entry_url(@entry)
     else
-      render :action => :create
+      render :action => :new
     end
   end
 

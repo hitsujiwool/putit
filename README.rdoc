@@ -1,3 +1,6 @@
 = Putit
 
-This project rocks and uses MIT-LICENSE.
+Putitはシンプルなアップローダです。Rails3のプラグインとして動作します。
+
+== 使い方
+    

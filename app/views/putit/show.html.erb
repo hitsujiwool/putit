@@ -9,6 +9,5 @@
   }
 </style>
 <%= form_tag(putit_upload_url, :multipart => true, :class => 'fileUpload') do %>
-  <%= hidden_field_tag :prefix %>
-  <%= file_field_tag :file %>
+  <%= file_field_tag :file %><a href="javascript:void(0);" class="remove">削除</a>
 <% end %>

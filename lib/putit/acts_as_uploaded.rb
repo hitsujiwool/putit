@@ -25,13 +25,10 @@ module Putit
     module ClassMethods
       attr_reader :uploaded
       
-      after_create = lambda do |obj|
-        obj.save
-      end
-
       before_update = lambda do |obj|
         self.class.uploaded.each do |field, options|
           val = obj.send(field)
+          next if val.blank? 
           tmp_dir = Rails.root.to_s + '/public' + TMP_DIR
           tmp_file = tmp_dir + '/' + val
           target_dir = Rails.root.to_s + '/public' + Pathname(UPLOAD_DIR + '/' + generate_subdir_path(options[:directory])).cleanpath.to_s
@@ -44,14 +41,18 @@ module Putit
           end          
         end
       end
-            
+          
+      after_create = lambda do |obj|
+        obj.save
+      end
+  
       define_method :acts_as_uploaded do |field, options = {}|
         options = DEFAULT.clone.merge(options)
         unless @uploaded
           #set_callback(:validate, :before, before_save)
           set_callback(:update, :after, before_update)
           set_callback(:create, :after, after_create)
-          validates(field, :format => /^[^\/]+$/)
+          validates(field, :format => /^[^\/]*$/)
           @uploaded = {}
         else
           ## 既に定義済みの場合はエラー
@@ -60,7 +61,7 @@ module Putit
           end
         end
         define_method(field.to_s + '_url') do
-          if send(field)
+          unless send(field).blank?
             Pathname(UPLOAD_DIR + '/' + generate_subdir_path(options[:directory])).cleanpath.to_s + '/' + send(field)
           else
             nil
