@@ -1,0 +1,17 @@
+<%= form_for @entry do |f| %>
+  <div class="clearfix">
+    <%= f.label :image  %>
+    <div class="input">
+      <%= f.upload_select :image, :size => '200x200' %>
+    </div>
+  </div>
+  <div class="clearfix">
+    <%= f.label :thumbnail  %>
+    <div class="input">
+      <%= f.upload_select :thumbnail, :size => '100x100' %>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.submit 'post', :disable_with => 'Uploading...' %>
+  </div>
+<% end %>

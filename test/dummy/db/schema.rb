@@ -11,45 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111122120438) do
-
-  create_table "albums", :force => true do |t|
-    t.string   "image"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "array_directory_option_entries", :force => true do |t|
-    t.string   "image"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20111130015017) do
 
   create_table "entries", :force => true do |t|
     t.string   "thumbnail"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "lambda_directory_option_entries", :force => true do |t|
-    t.string   "image"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "no_option_entries", :force => true do |t|
-    t.string   "image"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "string_directory_option_entries", :force => true do |t|
-    t.string   "image"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "validate_option_entries", :force => true do |t|
     t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"

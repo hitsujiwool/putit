@@ -2,13 +2,29 @@
 <html>
 <head>
   <title>Dummy</title>
-  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag 'application' %>
+  <%= stylesheet_link_tag 'http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css' %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="container">
+        <%= link_to "Sample", root_url, :class => 'brand' %>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="sidebar">
+      <ul>
+        <li><%= link_to 'list', entries_url %></li>
+        <li><%= link_to 'new', new_entry_url %></li>
+      </ul>
+    </div>
+    <div class="content">
+      <%= yield %>
+    </div>
+  </div>
 </body>
 </html>

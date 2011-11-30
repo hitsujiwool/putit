@@ -1,0 +1,25 @@
+<h1>Show entry <%= @entry.id %></h1>
+<div class="row">
+  <div class="span5">
+    image:
+  </div>
+  <div class="span11">
+    <%= image_tag @entry.image_url, :size => '200x200' %>
+  </div>
+</div>
+<div class="row">
+  <div class="span5">
+    filename:
+  </div>
+  <div class="span11">
+    <%= @entry.image %>
+  </div>
+</div>
+<div class="row">
+  <div class="span5">
+    url:
+  </div>
+  <div class="span11">
+    <%= @entry.image_url %>
+  </div>
+</div>

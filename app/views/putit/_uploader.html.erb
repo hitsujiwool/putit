@@ -1,29 +1,33 @@
-<iframe class="putit_upload" id="putit_uploader_<%= method %>" src="<%= putit_show_url %>" width="100%" height="30" frameborder="0"></iframe>
-<%= image_tag val, options.merge(:alt => '', :style => "display:#{val.blank? ? 'none' : 'inline'}", :class => 'thumbnail') %>
-<%= f.hidden_field method %>
+<iframe class="putit_upload" id="putit_uploader_<%= method %>" src="<%= putit_show_url %>" frameborder="0"></iframe>
+<div>
+  <%= image_tag val, options.merge(:alt => '', :style => "display:#{val.blank? ? 'none' : 'inline'}", :class => 'thumbnail') %>
+  <%= f.hidden_field method %>
+</div>
 <script>
 $(function() {
   $('#putit_uploader_<%= method %>').bind('load', function() {
     var $this = $(this)
-        $thumbnail = $this.next('.thumbnail'),
         $uploader = $($this.get(0).contentWindow.document),
-        $input = $uploader.find(':input');
+        $input = $uploader.find(':input'); 
+    if ($this.attr('height') == undefined) $this.height(this.contentWindow.document.documentElement.scrollHeight);
     $input.bind('change', function() {
       var $form = $(this).parent('form');
       $form.ajaxSubmit({
         dataType: 'json',
         success: function(data, status, xhr) {
           if (data.status === 'OK') {
-            $thumbnail.next().val(data.body.filename);
-            $thumbnail.attr('src', data.body.tmp_filepath).show();
+            $this.next().find('.thumbnail')
+              .attr('src', data.body.tmp_filepath).show()
+              .next().val(data.body.filename);
           }
         }
       });
     });
     $uploader.find('.remove').click(function() {
       $input.val('');
-      $thumbnail.hide();
-      $thumbnail.next().val('');
+      $this.next().find('.thumbnail')
+        .hide()
+        .next().val('');
     });
   });
 });

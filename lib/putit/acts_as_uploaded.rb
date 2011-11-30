@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 module Putit
   module ActsAsUploaded
+    include ActionView::Helpers::AssetTagHelper
     extend ActiveSupport::Concern
 
     DEFAULT = {
@@ -26,19 +27,19 @@ module Putit
       attr_reader :uploaded
       
       before_update = lambda do |obj|
+        tmp_dir = Rails.root.to_s + '/public' + TMP_DIR
         self.class.uploaded.each do |field, options|
           val = obj.send(field)
           next if val.blank? 
-          tmp_dir = Rails.root.to_s + '/public' + TMP_DIR
           tmp_file = tmp_dir + '/' + val
           target_dir = Rails.root.to_s + '/public' + Pathname(UPLOAD_DIR + '/' + generate_subdir_path(options[:directory])).cleanpath.to_s
           FileUtils.mkdir_p(target_dir)
           if File.exists?(tmp_file)
             File.rename(tmp_file, target_dir + '/' + val)
-            Dir.glob(tmp_dir + '/*').each do |path|
-              File.unlink(path)
-            end
-          end          
+          end
+        end
+        Dir.glob(tmp_dir + '/*').each do |path|
+          File.unlink(path)
         end
       end
           

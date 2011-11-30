@@ -2,3 +2,11 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+.putit_upload {
+	margin-bottom: 10px;
+	height: 0;
+}
+
+.sidebar, .content {
+	padding-top: 45px;
+}

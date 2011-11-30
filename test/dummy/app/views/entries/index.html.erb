@@ -1,0 +1,11 @@
+<h1>List entries</h1>
+<ul class="media-grid"> 
+  <% @entries.each do |entry| %>
+    <li>
+      <% unless entry.thumbnail.blank? -%>
+        <%= link_to image_tag(entry.thumbnail_url, :size => '100x100'), edit_entry_url(entry) %></li>
+      <% else -%>
+        <%= link_to no_image_tag(:size => '100x100'), edit_entry_url(entry) %>
+      <% end -%>
+  <% end %>
+</ul>

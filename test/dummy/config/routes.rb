@@ -4,8 +4,8 @@ Dummy::Application.routes.draw do
   get 'putit/show' => 'putit#show'
   post 'putit/upload' => 'putit#upload'
 
-  root :to => 'no_option_entries#new'
-  resources 'no_option_entries', :except => :destroy
+  root :to => 'entries#new'
+  resources 'entries', :except => :destroy
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

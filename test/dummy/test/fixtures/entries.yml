@@ -1,7 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
+  thumbnail: MyString
   image: MyString
 
 two:
+  thumbnail: MyString
   image: MyString
