@@ -11,7 +11,7 @@ class PutitController < ApplicationController
     tmp_file_abspath = tmp_dir_abspath + '/' + filename
     File.open(tmp_file_abspath, 'wb') do |f|
       f.write(file.read)
-      render :json => { :status => 'OK', :body => { :tmp_filepath => root_url.gsub(/\/$/, '') + Putit::TMP_DIR + '/' + filename, :filename => filename } }
+      render :json => { :status => 'OK', :body => { :tmp_filepath => root_path.gsub(/\/$/, '') + Putit::TMP_DIR + '/' + filename, :filename => filename } }
     end
   rescue
     render :json => { :status => 'ERROR' }, :status => 500
