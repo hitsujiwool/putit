@@ -1,4 +1,4 @@
-<iframe class="putit_upload" id="putit_uploader_<%= method %>" src="<%= putit_show_url %>" frameborder="0"></iframe>
+<iframe class="putit_upload" id="putit_uploader_<%= method %>" src="<%= putit_show_path %>" frameborder="0"></iframe>
 <div>
   <%= image_tag val, options.merge(:alt => '', :style => "display:#{val.blank? ? 'none' : 'inline'}", :class => 'thumbnail') %>
   <%= f.hidden_field method %>
