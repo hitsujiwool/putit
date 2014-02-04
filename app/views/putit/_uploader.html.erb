@@ -6,7 +6,7 @@
 <script>
 $(function() {
   $('#putit_uploader_<%= method %>').bind('load', function() {
-    var $this = $(this)
+    var $this = $(this),
         $uploader = $($this.get(0).contentWindow.document),
         $input = $uploader.find(':input'); 
     if ($this.attr('height') == undefined) $this.height(this.contentWindow.document.documentElement.scrollHeight);
